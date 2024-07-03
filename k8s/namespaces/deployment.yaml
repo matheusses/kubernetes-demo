@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-matheusses
+spec:
+  selector:
+    matchLabels:
+      app: app-matheusses
+  template:
+    metadata:
+      labels:
+        app: app-matheusses
+    spec:
+      serviceAccount: goserver-sa
+      containers:
+      - name: app-matheusses
+        image: "matheusses/hello-go:v12.0"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
